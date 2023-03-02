@@ -21,5 +21,5 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   #create test
-
+  test
 end
