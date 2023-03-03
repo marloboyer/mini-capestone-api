@@ -27,4 +27,23 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
       assert_response 200
     end
   end
+
+  #update test
+  test "update" do
+    product = Prodcut.first
+    patch "/products/#{product.id}.json", params: { name: "Water", price: 100 }
+    assert_response 200
+
+    data = JSON.parse(response.body)
+    assert_equal "Water", data["name"]
+    assert_equal 100, data["price"]
+  end
+
+  #destroy test
+  test "destroy" do
+    assert_difference "Prodcut.count", -1 do
+      delete "/products/#{Prodcut.first.id}.json"
+      assert_response 200
+    end
+  end
 end

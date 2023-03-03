@@ -1,0 +1,30 @@
+### Index 
+GET http://localhost:3000/products.json 
+
+### Show 
+GET http://localhost:3000/products/2.json
+
+### Create
+POST http://localhost:3000/products.json
+Content-Type: application/json
+
+{"name": "Lotion",
+"price": "10",
+"image_url": "nvwkg",
+"description": "Makes your skin smooth"
+}
+
+### Update 
+PATCH http://localhost:3000/products/1.json 
+Content-Type: application/json
+
+{"name":"Ice",
+"price": "3",
+"image_url": "dfsd",
+"description": "Frozen water"
+}
+
+
+
+### Delete
+DELETE http://localhost:3000/products/1.json
