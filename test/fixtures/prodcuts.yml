@@ -1,13 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: "Pie"
   price: 1
   image_url: MyString
-  description: MyString
+  description: "Warm baked dough with apples insde"
+  inventory: 4
 
 two:
-  name: MyString
+  name: "Celery"
   price: 1
   image_url: MyString
-  description: MyString
+  description: "The veg that is mostly made of water"
+  inventory: 3

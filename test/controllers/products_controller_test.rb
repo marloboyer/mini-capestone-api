@@ -26,18 +26,24 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
       post "/products.json", params: { name: "test product", price: 1, image_url: "gnkf", description: "test description" }
       assert_response 200
     end
+    post "/prodcuts.json", params{}
+    assert_response 422
   end
 
   #update test
   test "update" do
     product = Prodcut.first
-    patch "/products/#{product.id}.json", params: { name: "Water", price: 100 }
+    patch "/products/#{product.id}.json", params: { name: "Update Name"}
     assert_response 200
 
     data = JSON.parse(response.body)
-    assert_equal "Water", data["name"]
-    assert_equal 100, data["price"]
+    assert_equal "Update name" data["name"]
+    assert_equal product.price, data["price"].to_i
+    assert_equal product.image_url, data["image_url"]
+    assert_equal product.description, data["description"]
   end
+  patch "/products/#{@product.id}.json", params: {name:""}
+  assert_response 422
 
   #destroy test
   test "destroy" do

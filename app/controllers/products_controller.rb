@@ -12,13 +12,16 @@ class ProductsController < ApplicationController
 
   def create
     product = Prodcut.new(
-      name: "Tea",
-      price: "5",
-      image_url: "ldfa",
-      description: "water with flavor",
+      name: params[:name],
+      price: params[:price],
+      image_url: params[:image_url],
+      description: params[:description],
     )
-    product.save
-    render json: product.as_json
+    if product.save
+      render json: product.as_json
+    else
+      render json: { errors: product.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def update
@@ -31,8 +34,11 @@ class ProductsController < ApplicationController
       description: params[:description] || product.description,
     )
 
-    product.save
-    render json: product.as_json
+    if product.valid?
+      render json: product.as_json
+    else
+      render json: { errors: product.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def destroy
