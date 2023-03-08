@@ -1,17 +1,17 @@
 class ProductsController < ApplicationController
   def index
-    product = Prodcut.all
+    product = Product.all
     render json: product.as_json
   end
 
   def show
     product_id = params[:id]
-    product = Prodcut.find_by(id: product_id)
+    product = Product.find_by(id: product_id)
     render json: product.as_json
   end
 
   def create
-    product = Prodcut.new(
+    product = Product.new(
       name: params[:name],
       price: params[:price],
       image_url: params[:image_url],
@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
 
   def update
     product_id = params[:id]
-    product = Prodcut.find(product_id)
+    product = Product.find(product_id)
     product.update(
       name: params[:name] || product.name,
       price: params[:price] || product.price,
@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
 
   def destroy
     product_id = params[:id]
-    product = Prodcut.find(product_id)
+    product = Product.find(product_id)
     product.destroy
     render json: { message: "Product Deleted Successfully!" }
   end
