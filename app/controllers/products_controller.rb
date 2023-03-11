@@ -1,13 +1,13 @@
 class ProductsController < ApplicationController
   def index
     product = Product.all
-    render json: product.as_json
+    render json: product, :include => [:supplier]
   end
 
   def show
     product_id = params[:id]
     product = Product.find_by(id: product_id)
-    render json: product.as_json
+    render json: product, :include => [:supplier]
   end
 
   def create
@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
       description: params[:description],
     )
     if product.save
-      render json: product.as_json
+      render json: product, :include => [:supplier]
     else
       render json: { errors: product.errors.full_messages }, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class ProductsController < ApplicationController
     )
 
     if product.valid?
-      render json: product.as_json
+      render json: product, :include => [:supplier]
     else
       render json: { errors: product.errors.full_messages }, status: :unprocessable_entity
     end
