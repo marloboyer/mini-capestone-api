@@ -14,13 +14,13 @@ class ProductsController < ApplicationController
     @product = Product.new(
       name: params[:name],
       price: params[:price],
-      image_url: params[:image_url],
+      supplier_id: params[:supplier_id],
       description: params[:description],
     )
     if @product.save
       render template: "products/show"
     else
-      render json: { errors: product.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -30,14 +30,14 @@ class ProductsController < ApplicationController
     @product.update(
       name: params[:name] || @product.name,
       price: params[:price] || @product.price,
-      image_url: params[:image_url] || @product.image_url,
+      supplier_id: params[:supplier_id] || @product.supplier_id,
       description: params[:description] || @product.description,
     )
 
     if @product.valid?
       render template: "products/show"
     else
-      render json: { errors: product.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

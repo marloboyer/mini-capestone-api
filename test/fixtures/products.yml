@@ -3,13 +3,13 @@
 one:
   name: "Pie"
   price: 1
-  image_url: MyString
   description: "Warm baked dough with apples insde"
   inventory: 4
+  supplier: one
 
 two:
   name: "Celery"
   price: 1
-  image_url: MyString
   description: "The veg that is mostly made of water"
   inventory: 3
+  supplier: one

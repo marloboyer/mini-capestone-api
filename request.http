@@ -6,6 +6,7 @@ GET http://localhost:3000/products/2.json
 
 ### Create
 POST http://localhost:3000/products.json
+Authorization: Bearer "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2Nzg4Mzg1MTF9.3yOx9Cif23ool3gme4Ap1KwuE34kq4ZJ5VY1GtEp9rg"
 Content-Type: application/json
 
 {"name": "Apple",
@@ -28,3 +29,20 @@ Content-Type: application/json
 
 ### Delete
 DELETE http://localhost:3000/products/3.json
+
+### User Create (aka Sign-Up)
+POST http://localhost:3000/users.json
+Content-Type: application/json
+
+{"name": "Marlo",
+"email": "marloboyer@test.com",
+"password": "password",
+"password_confirmation": "password"
+}
+
+### Session Create (aka Login)
+POST http://localhost:3000/sessions.json
+Content-Type: application/json
+
+{"email": "marloboyer@test.com",
+"password": "password"}
