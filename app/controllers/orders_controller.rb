@@ -1,12 +1,13 @@
 class OrdersController < ApplicationController
   def create
     product = Product.find_by(id: params[:product_id])
-    subtotal = 0
-    tax = 0
-    total = 0
+    subtotal = product.price * params[:quantity].to_i
+    tax = subtotal * 0.09
+    total = subtotal + tax
+
     @order = Order.new(
       user_id: current_user.id,
-      product_id: parmas[:product_id],
+      product_id: params[:product_id],
       quantity: params[:quantity],
       subtotal: subtotal,
       tax: tax,
@@ -14,7 +15,7 @@ class OrdersController < ApplicationController
 
     )
     if @order.save
-      render json: @order.as_json
+      render template: "orders/show"
     else
       render json: { errors: @order.errors.full_messages }, status: :unprocessable_entity
     end
@@ -22,12 +23,12 @@ class OrdersController < ApplicationController
 
   def show
     order_id = params[:id]
-    @order = Order.find_by(id: order_id)
-    render json: @order.as_json
+    @order = current_user.orders.find_by(id: order_id)
+    render template: "orders/show"
   end
 
   def index
-    @orders = Order.all
-    render json: @order.as_json
+    @orders = current_user.orders
+    render template: "orders/index"
   end
 end
