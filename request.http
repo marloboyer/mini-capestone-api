@@ -34,8 +34,8 @@ DELETE http://localhost:3000/products/3.json
 POST http://localhost:3000/users.json
 Content-Type: application/json
 
-{"name": "Marlo",
-"email": "marloboyer@test.com",
+{"name": "Bo Boyer",
+"email": "boboyer@test.com",
 "password": "password",
 "password_confirmation": "password"
 }
