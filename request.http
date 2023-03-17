@@ -1,5 +1,5 @@
 ### Index 
-GET http://localhost:3000/products.json 
+GET http://localhost:3000/products.json?category=Beverage 
 
 ### Show 
 GET http://localhost:3000/products/2.json
